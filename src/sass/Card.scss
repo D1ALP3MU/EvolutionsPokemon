@@ -32,6 +32,11 @@
         position: absolute;
         top: 56px;
         left: 24px;
-        z-index: -1;
+        // z-index: -1;
+    }
+
+    &__img{
+        position: absolute;
+        z-index: 1;
     }
 }   
