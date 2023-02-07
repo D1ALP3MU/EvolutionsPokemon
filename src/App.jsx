@@ -37,9 +37,10 @@ const App = () => {
                 let pokemonLv3 = data.chain.evolves_to[0].evolves_to[0].species.name;
                 let pokemonLv3Img = await getPokemonImages(pokemonLv3);
                 pokemonEvolutionsArray.push([pokemonLv3, pokemonLv3Img]);
-                setPokemonEvolutions(pokemonEvolutionsArray);
+                console.log(pokemonEvolutionsArray);
             }
         }
+        setPokemonEvolutions(pokemonEvolutionsArray);
     }
 
     async function getPokemonImages(name){
@@ -59,11 +60,16 @@ const App = () => {
     }
     
     return(
-        <>
+        <div className="app">
             {/* Tarjetas */}
-            <div className="card-container">
+            <div className={`card-container card${pokemonEvolutions.length}`}>
                 {pokemonEvolutions.map(pokemon => 
-                    <Card name={pokemon} />)}
+                    <Card
+                        key={pokemon[0]}
+                        name={pokemon[0]}
+                        img={pokemon[1]}
+                    />
+                )}
             </div>
             <div className="buttons-container">
                 <Button 
@@ -75,7 +81,7 @@ const App = () => {
                 icon={<TiArrowRightOutline />} 
                 handleClick={nextClick} />
             </div>
-        </>
+        </div>
     )
 }
 
